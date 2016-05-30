@@ -1,0 +1,108 @@
+// Uploaded to https://api.myjson.com/bins/3t0uo
+
+{
+  "Seahawks": [
+    {
+      "away_team": "Minnesota Vikings",
+      "date": "Thu Aug 18 2016",
+      "time": "7:00 PM"
+    },
+    {
+      "away_team": "Dallas Cowboys",
+      "date": "Thu Aug 25 2016",
+      "time": "7:00 PM"
+    },
+    {
+      "away_team": "Miami Dolphins",
+      "date": "Sun Sep 11 2016",
+      "time": "1:05 PM"
+    },
+    {
+      "away_team": "San Francisco 49ers",
+      "date": "Sun Sep 25 2016",
+      "time": "1:05 PM"
+    },
+    {
+      "away_team": "Atlanta Falcons",
+      "date": "Sun Oct 16 2016",
+      "time": "1:25 PM"
+    },
+    {
+      "away_team": "Buffalo Bills",
+      "date": "Mon Nov 07 2016",
+      "time": "5:30 PM"
+    },
+    {
+      "away_team": "Philadelphia Eagles",
+      "date": "Sun Nov 20 2016",
+      "time": "1:25 PM"
+    },
+    {
+      "away_team": "Carolina Panthers",
+      "date": "Sun Dec 04 2016",
+      "time": "5:30 PM"
+    },
+    {
+      "away_team": "Los Angeles Rams",
+      "date": "Thu Dec 15 2016",
+      "time": "5:25 PM"
+    },
+    {
+      "away_team": "Arizona Cardinals",
+      "date": "Sat Dec 24 2016",
+      "time": "1:25 PM"
+    }
+  ],
+  "Sounders": [
+    {
+      "away_team": "New York City FC",
+      "date": "Sat Jun 25 2016",
+      "time": "2:00 PM"
+    },
+    {
+      "away_team": "LA Galaxy",
+      "date": "Sat Jul 09 2016",
+      "time": "12:00 PM"
+    },
+    {
+      "away_team": "FC Dallas",
+      "date": "Wed Jul 13 2016",
+      "time": "7:30 PM"
+    },
+    {
+      "away_team": "LA Galaxy",
+      "date": "Sun Jul 31 2016",
+      "time": "1:00 PM"
+    },
+    {
+      "away_team": "Real Salt Lake",
+      "date": "Sun Aug 14 2016",
+      "time": "4:00 PM"
+    },
+    {
+      "away_team": "Portland Timbers",
+      "date": "Sun Aug 21 2016",
+      "time": "6:30 PM"
+    },
+    {
+      "away_team": "Vancouver Whitecaps FC",
+      "date": "Sat Sep 17 2016",
+      "time": "1:00 PM"
+    },
+    {
+      "away_team": "Chicago Fire",
+      "date": "Wed Sep 28 2016",
+      "time": "7:30 PM"
+    },
+    {
+      "away_team": "Houston Dynamo",
+      "date": "Wed Oct 12 2016",
+      "time": "7:30 PM"
+    },
+    {
+      "away_team": "Real Salt Lake",
+      "date": "Sun Oct 23 2016",
+      "time": "1:00 PM"
+    }
+  ]
+}
