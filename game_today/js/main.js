@@ -77,7 +77,10 @@
         var homeTime = game.home_time;
         var homeAMPM = game.home_ampm;
         $('.gameday').text('Yes');
-        $('.vs').text(`Seattle Mariners vs. ${awayTeamCity} ${awayTeamName}`);
+        $('.away-team').text(`${awayTeamCity} ${awayTeamName}`);
+        $('.away-logo').attr('src',function() {
+          return 'img/mlb/' + awayTeamName.toLowerCase() + '.svg';
+        })
         $('.time').text(`${homeTime} ${homeAMPM}`);
         return;
       }
