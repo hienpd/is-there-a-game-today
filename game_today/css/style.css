@@ -2,12 +2,22 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: LightSeaGreen;
 }
 
 main {
   flex: 1 0 auto;
 }
 
+.hide {
+  display: none;
+}
+
 .brand-logo {
   font-family: 'Passion One', cursive;
+}
+
+.team-logo {
+  height: 150px;
+  width: 150px;
 }

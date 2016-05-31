@@ -1,4 +1,5 @@
 (function(){
+  var gamesToday = 0;
   var dateObj = new Date();
   var day;
   var month;
@@ -60,6 +61,16 @@
   var $todayIs = $('#today');
   $todayIs.text(`Today is ${day}, ${month} ${date}, ${year}`);
 
+  var yesGame = function() {
+    gamesToday += 1;
+    if ($('.gameday').text() === 'Yes') {
+      return;
+    }
+    else {
+      $('.gameday').text('Yes');
+    }
+  };
+
   /* Check for Mariners game being played in Seattle. Path format: http://gd2.mlb.com/components/game/mlb/year_2016/month_05/day_28/master_scoreboard.json */
 
   var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${date}/master_scoreboard.json`);
@@ -76,12 +87,13 @@
         var awayTeamName = game.away_team_name;
         var homeTime = game.home_time;
         var homeAMPM = game.home_ampm;
-        $('.gameday').text('Yes');
+        yesGame();
         $('.away-team').text(`${awayTeamCity} ${awayTeamName}`);
-        $('.away-logo').attr('src',function() {
+        $('.away-logo').attr('src', function() {
           return 'img/mlb/' + awayTeamName.toLowerCase() + '.svg';
-        })
+        });
         $('.time').text(`${homeTime} ${homeAMPM}`);
+        $('.row, mariners, hide').removeClass('hide');
         return;
       }
       else {
