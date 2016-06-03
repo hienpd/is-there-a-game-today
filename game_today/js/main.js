@@ -40,6 +40,12 @@
     }
   };
 
+  var concat0 = function(date) {
+    if (date < 10) {
+      return '0' + (date.toString());
+    }
+  };
+
   var createCompareDate = function() {
     var tmpDay = `${day.slice(0, 3)}`;
     var tmpMonth = `${month.slice(0, 3)}`;
@@ -51,8 +57,8 @@
         return date;
       }
     };
-    // compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${year}`;
-    compareDate = 'Sun Oct 23 2016';
+    compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${year}`;
+    // compareDate = 'Sun Oct 23 2016';
   };
 
   convertDay();
@@ -69,14 +75,13 @@
 
   /* Check for Mariners game being played in Seattle. Path format: http://gd2.mlb.com/components/game/mlb/year_2016/month_05/day_28/master_scoreboard.json */
 
-  var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${date}/master_scoreboard.json`);
+  var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${concat0(date)}/master_scoreboard.json`);
 
   $xhrMariners.done(function(data) {
     if ($xhrMariners.status !== 200) {
       return;
     }
     var gameArray = data.data.games.game;
-    console.log(gameArray);
     for (var game of gameArray) {
       if (game.location === 'Seattle, WA') {
         var awayTeamCity = game.away_team_city;
@@ -99,22 +104,6 @@
     console.log(error);
   });
 
-  // Check other teams
-  // var $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
-  // $xhr.done(function(data) {
-  //   var seahawks = data.Seahawks;
-  //     for (var game of seahawks) {
-  //       if (game.date === compareDate) {
-  //         yesGame();
-  //         $('.nfl-time').text(game.time);
-  //         $('.nfl-away-team').text(game.away_team);
-  //         $('.nfl-away-logo').attr('src', function() {
-  //           return 'img/nfl/' + game.away_team.toLowerCase().replace(' ', '_') + '.svg';
-  //         });
-  //     }
-  //   }
-  // });
-
   var $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
   $xhr.done(function(data) {
     var leagueMap = {
@@ -128,14 +117,14 @@
 
       for (var game of games) {
         if (game.date === compareDate) {
-          // replace all spaces with _ using regex
+          // replace all spaces with '_' using regex
           var file = game.away_team.toLowerCase().replace(/ /g, '_') + '.svg';
           yesGame();
           $(`.${league}-time`).text(game.time);
           $(`.${league}-away-team`).text(game.away_team);
           $(`.${league}-away-logo`).attr('src', 'img/' + league + '/' + file);
           $(`.${teamName.toLowerCase()}`).removeClass('hide');
-          
+
         }
       }
     }
@@ -144,5 +133,4 @@
   $xhr.fail(function(error) {
     console.log(error);
   });
-
 }());

@@ -11,39 +11,22 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!--Custom styles-->
-      <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
       <link type="text/css" rel="stylesheet" href="css/style.css">
+      <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
     </head>
+
     <body>
       <header>
-        <nav>
-          <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo">Is There a Game Today?</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-            </ul>
+        <div class="col s12 hero valign-wrapper">
+          <div class="row overlay center">
+            <p id="today" class="valign">Today is...</p>
+            <h1 class="brand-logo valign">Is There a Game Today?</h1>
+            <h1 class="gameday valign">Nope.</h1>
           </div>
-        </nav>
+        </div>
       </header>
       <main>
       <div class="container">
-
-        <div class="row">
-          <div class="col s12">
-            <p id="today" class="center">Today is...</p>
-          </div>
-        <div class="row">
-          <div class="col s12">
-            <h1 class="center">Is There a Game Today?</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12">
-            <h1 class="center gameday">No</h1>
-          </div>
-        </div>
-      </div>
 
         <div class="row mariners hide">
           <div class="col s6">
@@ -117,35 +100,86 @@
           </div>
         </div>
 
+        <div class="row">
+          <h5 class="buffer">This Week's Schedule</h5>
+          <div class="week-schedule">
+            <div id="mon" class="week-box center teal lighten-5">
+              <p>MON</p><p>MAY 30</p><p>MARINERS</p>
+            </div>
+            <div id="tue" class="week-box center teal lighten-5">
+              <p>TUE</p><p>MAY 31</p><p>MARINERS</p>
+            </div>
+            <div id="wed" class="week-box center teal lighten-5">
+              <p>WED</p><p>JUN 01</p>
+            </div>
+            <div id="thu" class="week-box center teal lighten-5">
+              <p>THU</p><p>JUN 02</p>
+            </div>
+            <div id="fri" class="week-box center yellow lighten-5">
+              <p>FRI</p><p>JUN 03</p>
+            </div>
+            <div id="sat" class="week-box center teal lighten-4">
+              <p>SAT</p><p>JUN 04</p>
+            </div>
+            <div id="sun" class="week-box center teal lighten-4">
+              <p>SUN</p><p>JUN 05</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s5">
+            <h5 class="buffer">Pick a Date</h5>
+            <input type="date" class="datepicker" placeholder="Click here to pick a date">
+          </div>
+          <div class="col s7">
+            <div class="card teal lighten-5 future-date buffer">
+              <h5 class="dark"><span class="future-pick"></span></h5>
+              <div class="future-mlb hide">
+                <span class="future-mlb-away"></span>
+                <span class="future-mlb-time"></span>
+              </div>
+              <div class="future-mls hide">
+                <p>
+                  <span class="future-mls-away"></span>
+                  <span class="future-mls-time"></span>
+                </p>
+              </div>
+              <div class="future-nfl hide">
+                <p>
+                  <span class="future-nfl-away"></span>
+                  <span class="future-nfl-time"></span>
+                </p>
+              </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
   <footer class="page-footer">
     <div class="container">
       <div class="row">
-        <div class="col s4">
+        <div class="col s6">
           <h5 class="brand-logo">Is There a Game Today?</h5>
+            <p>Ever been stuck in traffic as thousands of fans converge on Seattle's SODO district? <i>Is There a Game Today?</i> helps Seattle commuters plan their day around professional sports events. Check here for any Mariners, Sounders, or Seahawks home games scheduled for today!</p>
+        </div>
+        <div class="col s3">
+          <h5>Team Schedule</h5>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="http://seattle.mariners.mlb.com/schedule/index.jsp?c_id=sea#y=2016&calendar=DEFAULT&m=5">Mariners</a></li>
+            <li><a href="http://www.seahawks.com/schedule">Seahawks</a></li>
+            <li><a href="http://www.soundersfc.com/schedule">Sounders</a></li>
           </ul>
         </div>
-        <div class="col s4">
-          <p>Quick Links</p>
+        <div class="col s3">
+          <h5>Quick Links</h5>
           <ul>
             <li><a href="http://www.seattle.gov/transportation/parking/paidparkingrates.htm">Street Parking Rates</a></li>
             <li><a href="http://downtownseattle.com/parking/index.html">Find a Parking Lot</a></li>
             <li><a href="https://twitter.com/SDOTbridges">Check the Bridges</a></li>
             <li><a href="http://metro.kingcounty.gov/">King County Metro</a></li>
             <li><a href="http://www.soundtransit.org/">Sound Transit</a></li>
-          </ul>
-        </div>
-        <div class="col s4">
-          <p>Team Schedule</p>
-          <ul>
-            <li><a href="http://seattle.mariners.mlb.com/schedule/index.jsp?c_id=sea#y=2016&calendar=DEFAULT&m=5">Mariners</a></li>
-            <li><a href="http://www.seahawks.com/schedule">Seahawks</a></li>
-            <li><a href="http://www.soundersfc.com/schedule">Sounders</a></li>
           </ul>
         </div>
       </div>
@@ -160,5 +194,6 @@
       <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
       <script type="text/javascript" src="js/main.js"></script>
+      <script type="text/javascript" src="js/date-picker.js"></script>
     </body>
   </html>

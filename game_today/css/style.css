@@ -14,10 +14,87 @@ main {
 }
 
 .brand-logo {
-  font-family: 'Passion One', cursive;
+  font-family: 'Rock Salt', cursive;
+  color: #ffffff;
 }
 
 .team-logo {
   height: 150px;
   max-width: 150px;
+}
+
+.week-schedule {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.week-box {
+  background-color: #ffffff;
+  flex-basis: 100px;
+  flex-grow: 1;
+  height: 115px;
+  margin: 5px;
+}
+
+.future-date {
+  height: 200px;
+  padding: 10px;
+}
+
+.hero {
+  background: url(../img/background.jpeg);
+  background-size: cover;
+  height: 750px;
+}
+
+h1 {
+  width: 100%;
+  margin: 0 0 60px 0;
+}
+
+.overlay {
+  background: rgba(0, 150, 136, 0.5);
+  height: 103%;
+  width: 100%;
+  z-index: 2;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+#today {
+  color: #ffffff;
+  margin: 0 0 60px 0;
+}
+
+a {
+  color: #44E2D4;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+footer.page-footer {
+  color: #ffffff;
+  background-color: #00635A;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+.buffer {
+  margin-top: 100px;
+}
+
+.dark {
+  color: #00635A;
 }
