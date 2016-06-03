@@ -1,11 +1,12 @@
 (function() {
-
+  // Materialize uses pickadate.js
   $('.datepicker').pickadate({
     selectMonths: true,
     selectYears: 2,
     format: 'dddd, mmmm d, yyyy',
     formatSubmit: 'ddd mmm dd yyyy',
     onSet: function(context) {
+      // Clear game info from box
       var clearInfo = function() {
         $('.future-mlb-away').text('');
         $('.future-mlb-time').text('');
@@ -16,7 +17,7 @@
       };
 
       if (context.select === undefined) {
-        // The user hasn't selected a date, so clear and return
+        // If user hasn't selected a date, clear and return
         clearInfo();
         return;
       }
@@ -52,6 +53,7 @@
         }
       };
 
+      // If date less than 10, concatenate 0
       var concat0 = function(date) {
         if (date < 10) {
           return '0' + (date.toString());
@@ -61,7 +63,6 @@
 
       var $displayDate = $('.future-date');
       var dateObj = new Date(context.select);
-
       var datePicked = dateObj.getDate();
       var monthInt = dateObj.getMonth();
       var dayInt = dateObj.getDay();
@@ -69,9 +70,10 @@
       var dayPicked = convertDay(dayInt);
       var yearPicked = dateObj.getFullYear();
 
+      // Display date user picked
       $('.future-pick').text(`${dayPicked}, ${monthPicked} ${datePicked}, ${yearPicked}`);
 
-      // Check Mariners schedule
+      // Check Mariners API
       var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${yearPicked}/month_0${monthInt + 1}/day_${concat0(datePicked)}/master_scoreboard.json`);
 
       $xhrMariners.done(function(data) {
@@ -97,8 +99,7 @@
         console.log(error);
       });
 
-      // Check Sounders and Seahawks
-
+      // Check Sounders and Seahawks API
       var $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
       $xhr.done(function(data) {
         clearInfo();
@@ -106,7 +107,6 @@
         var tmpMonth = `${monthPicked.slice(0, 3)}`;
         var tmpDate = concat0(datePicked);
         var compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${yearPicked}`;
-
         var leagueMap = {
           'Sounders': 'mls',
           'Seahawks': 'nfl'
@@ -120,12 +120,11 @@
             if (game.date === compareDate) {
               $(`.future-${league}-away`).text(`Seattle ${teamName} vs. ${game.away_team}`);
               $(`.future-${league}-time`).text(game.time);
-              $(`.future-${league}`).removeClass('hide');
+              // $(`.future-${league}`).removeClass('hide');
             }
           }
         }
       });
-
     }
   });
 }());

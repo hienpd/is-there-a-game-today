@@ -1,5 +1,4 @@
 (function(){
-  var gamesToday = 0;
   var dateObj = new Date();
   var day;
   var month;
@@ -40,12 +39,14 @@
     }
   };
 
+  // If date less than 10, concatenate 0
   var concat0 = function(date) {
     if (date < 10) {
       return '0' + (date.toString());
     }
   };
 
+  // Format date for Sounders and Seahawks API
   var createCompareDate = function() {
     var tmpDay = `${day.slice(0, 3)}`;
     var tmpMonth = `${month.slice(0, 3)}`;
@@ -57,25 +58,31 @@
         return date;
       }
     };
-    compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${year}`;
-    // compareDate = 'Sun Oct 23 2016';
+    // compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${year}`;
+    // For demo:
+    compareDate = 'Sat Jun 25 2016';
+    // compareDate = 'Thu Aug 18 2016';
   };
 
   convertDay();
   convertMonth();
   createCompareDate();
 
+  // Display today's date
   var $todayIs = $('#today');
-  $todayIs.text(`Today is ${day}, ${month} ${date}, ${year}`);
+  // $todayIs.text(`Today is ${day}, ${month} ${date}, ${year}`);
+  // For demo:
+  $todayIs.text('Today is Saturday, June 25, 2016');
 
+  // If there is a game, display yes
   var yesGame = function(obj) {
-    gamesToday += 1;
     $('.gameday').text('Yes');
   };
 
-  /* Check for Mariners game being played in Seattle. Path format: http://gd2.mlb.com/components/game/mlb/year_2016/month_05/day_28/master_scoreboard.json */
-
-  var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${concat0(date)}/master_scoreboard.json`);
+  // Check Mariners API
+  // var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${concat0(date)}/master_scoreboard.json`);
+  // For demo:
+  var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_2016/month_06/day_25/master_scoreboard.json`);
 
   $xhrMariners.done(function(data) {
     if ($xhrMariners.status !== 200) {
@@ -94,7 +101,7 @@
           return 'img/mlb/' + awayTeamName.toLowerCase() + '.svg';
         });
         $('.mlb-time').text(`${homeTime} ${homeAMPM}`);
-        $('.row, mariners, hide').removeClass('hide');
+        $('.row.mariners.hide').removeClass('hide');
         return;
       }
     }
@@ -104,6 +111,7 @@
     console.log(error);
   });
 
+  // Check Sounders and Seahawks API
   var $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
   $xhr.done(function(data) {
     var leagueMap = {
@@ -117,14 +125,13 @@
 
       for (var game of games) {
         if (game.date === compareDate) {
-          // replace all spaces with '_' using regex
+          // Replace all spaces with '_' using regex
           var file = game.away_team.toLowerCase().replace(/ /g, '_') + '.svg';
           yesGame();
           $(`.${league}-time`).text(game.time);
           $(`.${league}-away-team`).text(game.away_team);
           $(`.${league}-away-logo`).attr('src', 'img/' + league + '/' + file);
           $(`.${teamName.toLowerCase()}`).removeClass('hide');
-
         }
       }
     }
