@@ -1,67 +1,105 @@
-(function(){
-  var dateObj = new Date();
-  var day;
-  var month;
-  var date = dateObj.getDate();
-  var year = dateObj.getFullYear();
-  var dayInt = dateObj.getDay();
-  var monthInt = dateObj.getMonth();
-  var compareDate = '';
+(function() {
+  'use strict';
+  const dateObj = new Date();
+  let day;
+  let month;
+  const date = dateObj.getDate();
+  const year = dateObj.getFullYear();
+  const dayInt = dateObj.getDay();
+  const monthInt = dateObj.getMonth();
+  let compareDate = '';
 
-  var convertDay = function() {
+  const convertDay = function() {
     switch (dayInt) {
-      case 0: day = 'Sunday'; break;
-      case 1: day = 'Monday'; break;
-      case 2: day = 'Tuesday'; break;
-      case 3: day = 'Wednesday'; break;
-      case 4: day = 'Thursday'; break;
-      case 5: day = 'Friday'; break;
-      case 6: day = 'Saturday'; break;
-      default: day = ''; break;
+      case 0:
+        day = 'Sunday';
+        break;
+      case 1:
+        day = 'Monday';
+        break;
+      case 2:
+        day = 'Tuesday';
+        break;
+      case 3:
+        day = 'Wednesday';
+        break;
+      case 4:
+        day = 'Thursday';
+        break;
+      case 5:
+        day = 'Friday';
+        break;
+      case 6:
+        day = 'Saturday';
+        break;
+      default:
+        day = '';
+        break;
     }
   };
 
-  var convertMonth = function() {
+  const convertMonth = function() {
     switch (monthInt) {
-      case 0: month = 'January'; break;
-      case 1: month = 'February'; break;
-      case 2: month = 'March'; break;
-      case 3: month = 'April'; break;
-      case 4: month = 'May'; break;
-      case 5: month = 'June'; break;
-      case 6: month = 'July'; break;
-      case 7: month = 'August'; break;
-      case 8: month = 'September'; break;
-      case 9: month = 'October'; break;
-      case 10: month = 'November'; break;
-      case 11: month = 'December'; break;
-      default: month = ''; break;
+      case 0:
+        month = 'January';
+        break;
+      case 1:
+        month = 'February';
+        break;
+      case 2:
+        month = 'March';
+        break;
+      case 3:
+        month = 'April';
+        break;
+      case 4:
+        month = 'May';
+        break;
+      case 5:
+        month = 'June';
+        break;
+      case 6:
+        month = 'July';
+        break;
+      case 7:
+        month = 'August';
+        break;
+      case 8:
+        month = 'September';
+        break;
+      case 9:
+        month = 'October';
+        break;
+      case 10:
+        month = 'November';
+        break;
+      case 11:
+        month = 'December';
+        break;
+      default:
+        month = '';
+        break;
     }
   };
 
   // If date less than 10, concatenate 0
-  var concat0 = function(date) {
-    if (date < 10) {
-      return '0' + (date.toString());
+  const concat0 = function(dateNum) {
+    const dateStr = dateNum.toString();
+
+    if (dateNum < 10) {
+      return `0${dateStr}`;
     }
+
+    return dateStr;
   };
 
   // Format date for Sounders and Seahawks API
-  var createCompareDate = function() {
-    var tmpDay = `${day.slice(0, 3)}`;
-    var tmpMonth = `${month.slice(0, 3)}`;
-    var tmpDate = function(date) {
-      if (date < 10) {
-        return '0' + (date.toString());
-      }
-      else {
-        return date;
-      }
-    };
-    // compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${year}`;
-    // For demo:
-    compareDate = 'Sat Jun 25 2016';
-    // compareDate = 'Thu Aug 18 2016';
+  const createCompareDate = function() {
+    const tmpDay = `${day.slice(0, 3)}`;
+    const tmpMonth = `${month.slice(0, 3)}`;
+    const tmpDate = concat0(date);
+
+    compareDate = `${tmpDay} ${tmpMonth} ${tmpDate} ${year}`;
   };
 
   convertDay();
@@ -69,75 +107,68 @@
   createCompareDate();
 
   // Display today's date
-  var $todayIs = $('#today');
-  // $todayIs.text(`Today is ${day}, ${month} ${date}, ${year}`);
-  // For demo:
-  $todayIs.text('Today is Saturday, June 25, 2016');
+  const $todayIs = $('#today');
+
+  $todayIs.text(`Today is ${day}, ${month} ${date}, ${year}`);
 
   // If there is a game, display yes
-  var yesGame = function(obj) {
+  const yesGame = function() {
     $('.gameday').text('Yes');
   };
 
   // Check Mariners API
-  // var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${concat0(date)}/master_scoreboard.json`);
-  // For demo:
-  var $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_2016/month_06/day_25/master_scoreboard.json`);
+  const $xhrMariners = $.getJSON(`http://gd2.mlb.com/components/game/mlb/year_${year}/month_0${monthInt + 1}/day_${concat0(date)}/master_scoreboard.json`);
 
-  $xhrMariners.done(function(data) {
+  $xhrMariners.done((data) => {
     if ($xhrMariners.status !== 200) {
       return;
     }
-    var gameArray = data.data.games.game;
-    for (var game of gameArray) {
+    const gameArray = data.data.games.game;
+    const awayLogo = (awayName) => `img/mlb/${awayName.toLowerCase()}.svg`;
+
+    for (const game of gameArray) {
       if (game.location === 'Seattle, WA') {
-        var awayTeamCity = game.away_team_city;
-        var awayTeamName = game.away_team_name;
-        var homeTime = game.home_time;
-        var homeAMPM = game.home_ampm;
+        const awayTeamCity = game.away_team_city;
+        const awayTeamName = game.away_team_name;
+        const homeTime = game.home_time;
+        const homeAMPM = game.home_ampm;
+
         yesGame();
         $('.mlb-away-team').text(`${awayTeamCity} ${awayTeamName}`);
-        $('.mlb-away-logo').attr('src', function() {
-          return 'img/mlb/' + awayTeamName.toLowerCase() + '.svg';
-        });
         $('.mlb-time').text(`${homeTime} ${homeAMPM}`);
         $('.row.mariners.hide').removeClass('hide');
+        $('.mlb-away-logo').attr('src', awayLogo(awayTeamName));
+
         return;
       }
     }
   });
 
-  $xhrMariners.fail(function(error) {
-    console.log(error);
-  });
-
   // Check Sounders and Seahawks API
-  var $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
-  $xhr.done(function(data) {
-    var leagueMap = {
-      'Sounders': 'mls',
-      'Seahawks': 'nfl'
+  const $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
+
+  $xhr.done((data) => {
+    const leagueMap = {
+      Sounders: 'mls',
+      Seahawks: 'nfl'
     };
 
-    for (var teamName in data) {
-      var games = data[teamName];
-      var league = leagueMap[teamName];
+    for (const teamName in data) {
+      const games = data[teamName];
+      const league = leagueMap[teamName];
 
-      for (var game of games) {
+      for (const game of games) {
         if (game.date === compareDate) {
           // Replace all spaces with '_' using regex
-          var file = game.away_team.toLowerCase().replace(/ /g, '_') + '.svg';
+          const file = game.away_team.toLowerCase().replace(/ /g, '_')`.svg`;
+
           yesGame();
           $(`.${league}-time`).text(game.time);
           $(`.${league}-away-team`).text(game.away_team);
-          $(`.${league}-away-logo`).attr('src', 'img/' + league + '/' + file);
+          $(`.${league}-away-logo`).attr('src', `img/${league} /${file}`);
           $(`.${teamName.toLowerCase()}`).removeClass('hide');
         }
       }
     }
   });
-
-  $xhr.fail(function(error) {
-    console.log(error);
-  });
-}());
+})();
