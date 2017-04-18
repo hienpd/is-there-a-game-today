@@ -104,12 +104,13 @@
         <div class="col s5">
           <label>
             <h5 class="buffer">Pick a Date</h5>
-            <a type="date" class="teal darken-4 waves-effect waves-light btn datepicker">Click Here to Pick a Date</a>
+            <a type="date" class="teal darken-4 waves-effect waves-light btn datepicker"><i class="material-icons left">today</i>Click Here to Pick a Date</a>
           </label>
         </div>
         <div class="col s7">
-          <div class="card teal lighten-5 future-date buffer">
+          <div id="pick" class="card teal lighten-5 future-date buffer hide">
             <h5 class="dark"><span class="future-pick"></span></h5>
+            <span id="no-game">No game that day!</span>
             <div class="future-mlb hide">
               <span class="future-mlb-away"></span>
               <span class="future-mlb-time"></span>

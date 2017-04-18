@@ -98,6 +98,8 @@
         };
 
         // Display date user picked
+        $('#pick').removeClass('hide');
+        $('#no-game').removeClass('hide')
         $('.future-pick').text(`${dayPicked}, ${monthPicked} ${datePicked}, ${yearPicked}`);
 
         // Check Mariners API
@@ -119,6 +121,7 @@
               $('.future-mlb-away').text(`Seattle Mariners vs. ${awayTeamCity} ${awayTeamName}`);
               $('.future-mlb-time').text(`${homeTime} ${homeAMPM}`);
               $('.future-mlb.hide').removeClass('hide');
+              $('#no-game').addClass('hide');
 
               return;
             }
@@ -148,6 +151,8 @@
                 $(`.future-${league}-away`).text(`Seattle ${teamName} vs. ${game.away_team}`);
                 $(`.future-${league}-time`).text(game.time);
                 $(`.future-${league}`).removeClass('hide');
+                $('#no-game').addClass('hide');
+
               }
             }
           }
