@@ -129,7 +129,7 @@
         });
 
         // Check Sounders and Seahawks API
-        const $xhr = $.getJSON('https://api.myjson.com/bins/3t0uo');
+        const $xhr = $.getJSON('https://api.myjson.com/bins/12w0er');
 
         $xhr.done((data) => {
           clearInfo();
